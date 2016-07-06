@@ -23,13 +23,17 @@ public class AirSortDriver {
 		job.setMapperClass(AirSortMapper.class); //Mapper 클래스 지정
 		job.setReducerClass(AirSortReducer.class); //Reducer클래스 지정
 		job.setJarByClass(AirSortDriver.class); //드라이버클래스(job을 실행)
+		job.setPartitionerClass(CustomKeyPartitioner.class); //파티셔너
+		job.setSortComparatorClass(CustomComparator.class); //정렬기준비교객체
+		job.setGroupingComparatorClass(GroupKeyComparator.class); //그룹키
+		
 		
 		//3. input데이터와 output데이터의 포멧을 지정
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 		
 		//4. 리듀서의 출력데이터에 대한 키와 value를 설정
-		job.setOutputKeyClass(Text.class);
+		job.setOutputKeyClass(CustomKey.class);
 		job.setOutputValueClass(IntWritable.class);
 		
 		//5. hdfs에 저장된 파일을 읽어오고 처리결과를 저장하기

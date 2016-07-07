@@ -3,7 +3,6 @@ package hadoop.sort.mapred;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
@@ -26,7 +25,6 @@ public class AirSortDriver {
 		job.setPartitionerClass(CustomKeyPartitioner.class); //파티셔너
 		job.setSortComparatorClass(CustomComparator.class); //정렬기준비교객체
 		job.setGroupingComparatorClass(GroupKeyComparator.class); //그룹키
-		
 		
 		//3. input데이터와 output데이터의 포멧을 지정
 		job.setInputFormatClass(TextInputFormat.class);
